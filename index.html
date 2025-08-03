@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Farouk - Graphic Designer</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #f8fafc;
+            --accent-color: #fbbf24;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 30%, #4c1d95 70%, #1e1b4b 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(37, 99, 235, 0.9), rgba(139, 92, 246, 0.9));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 4px;
+            transition: width 2s ease;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--accent-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .section-padding {
+            padding: 5rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 2rem 0;
+            }
+            
+            /* Mobile-friendly improvements */
+            .container {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            
+            /* Compact mobile navigation */
+            nav .container {
+                padding: 0.5rem 1rem;
+            }
+            
+            nav .text-2xl {
+                font-size: 1.25rem !important;
+            }
+            
+            /* Touch-friendly buttons */
+            button, .btn, a[class*="bg-"] {
+                min-height: 44px;
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            /* Smaller mobile cards */
+            .hover-lift {
+                padding: 1rem !important;
+                margin-bottom: 0.75rem;
+            }
+            
+            .project-card {
+                border-radius: 0.75rem;
+            }
+            
+            .project-card .relative.h-64 {
+                height: 12rem !important;
+            }
+            
+            .project-card .p-6 {
+                padding: 1rem !important;
+            }
+            
+            /* Mobile typography */
+            .text-7xl { font-size: 2.25rem !important; }
+            .text-5xl { font-size: 2rem !important; }
+            .text-4xl { font-size: 1.75rem !important; }
+            .text-3xl { font-size: 1.5rem !important; }
+            .text-2xl { font-size: 1.25rem !important; }
+            .text-xl { font-size: 1.125rem !important; }
+            .text-lg { font-size: 1rem !important; }
+            
+            /* Hero section mobile optimization */
+            .w-80.h-80 {
+                width: 12rem !important;
+                height: 12rem !important;
+            }
+            
+            .lg\\:w-96.lg\\:h-96 {
+                width: 12rem !important;
+                height: 12rem !important;
+            }
+            
+            /* Mobile spacing */
+            .space-y-6 > * + * {
+                margin-top: 1rem;
+            }
+            
+            .mb-16 {
+                margin-bottom: 2rem !important;
+            }
+            
+            .mb-12 {
+                margin-bottom: 1.5rem !important;
+            }
+            
+            .mb-8 {
+                margin-bottom: 1rem !important;
+            }
+            
+            .mb-6 {
+                margin-bottom: 0.75rem !important;
+            }
+            
+            /* Mobile grid improvements */
+            .grid {
+                gap: 0.75rem !important;
+            }
+            
+            .gap-6 {
+                gap: 0.75rem !important;
+            }
+            
+            .gap-8 {
+                gap: 1rem !important;
+            }
+            
+            /* Services section mobile */
+            .grid.grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-4 {
+                grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+            }
+            
+            .text-center.p-8 {
+                padding: 1.5rem !important;
+            }
+            
+            /* Mobile form improvements */
+            input, textarea {
+                font-size: 16px !important; /* Prevents zoom on iOS */
+                padding: 0.75rem !important;
+            }
+            
+            /* Portfolio filter mobile */
+            .portfolio-filter {
+                padding: 0.5rem 1rem !important;
+                font-size: 0.875rem !important;
+            }
+            
+            /* Mobile menu improvements */
+            #mobile-menu .bg-white {
+                margin: 0.5rem;
+                padding: 0.75rem;
+            }
+            
+            #mobile-menu a {
+                padding: 0.75rem 1rem !important;
+                font-size: 0.875rem !important;
+            }
+            
+            /* Contact section mobile */
+            .space-y-6 {
+                gap: 1rem !important;
+            }
+            
+            .w-12.h-12 {
+                width: 2.5rem !important;
+                height: 2.5rem !important;
+            }
+            
+            /* Footer mobile */
+            footer .py-8 {
+                padding-top: 1.5rem !important;
+                padding-bottom: 1.5rem !important;
+            }
+            
+            /* Skill tags mobile */
+            .flex.flex-wrap.gap-2 span {
+                font-size: 0.75rem !important;
+                padding: 0.25rem 0.5rem !important;
+            }
+            
+            /* About section mobile */
+            .bg-gray-50.p-8 {
+                padding: 1.5rem !important;
+            }
+            
+            /* Prevent horizontal scroll on mobile */
+            body {
+                overflow-x: hidden;
+            }
+            
+            /* Better mobile navigation positioning */
+            nav {
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
+            
+            /* Improve mobile touch targets */
+            a, button {
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            /* Mobile-specific hero adjustments */
+            .min-h-screen {
+                min-height: calc(100vh - 60px);
+                padding-top: 60px;
+            }
+            
+            /* Better mobile spacing for sections */
+            section {
+                scroll-margin-top: 60px;
+            }
+            
+            /* Mobile iframe responsiveness */
+            iframe {
+                height: 250px !important;
+            }
+        }
+        
+        /* Desktop and larger screens */
+        @media (min-width: 769px) {
+            section {
+                scroll-margin-top: 80px;
+            }
+            
+            .min-h-screen {
+                min-height: 100vh;
+                padding-top: 0;
+            }
+        }
+        
+        /* Small mobile devices (phones in portrait) */
+        @media (max-width: 480px) {
+            .container {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+            
+            .text-3xl { font-size: 1.25rem !important; }
+            .text-2xl { font-size: 1.125rem !important; }
+            .text-xl { font-size: 1rem !important; }
+            
+            .px-4 { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+            .px-6 { padding-left: 1rem !important; padding-right: 1rem !important; }
+            
+            .mb-8 { margin-bottom: 1.5rem !important; }
+            .mb-6 { margin-bottom: 1rem !important; }
+            .mb-4 { margin-bottom: 0.75rem !important; }
+            
+            /* Extra small cards for very small screens */
+            .project-card .relative.h-48 {
+                height: 10rem !important;
+            }
+            
+            .project-card .p-4 {
+                padding: 0.75rem !important;
+            }
+            
+            /* Smaller service cards */
+            .text-center.p-4 {
+                padding: 1rem !important;
+            }
+            
+            /* Compact contact form */
+            .space-y-4 > * + * {
+                margin-top: 0.75rem !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 py-2 sm:py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-xl sm:text-2xl font-bold font-display text-gray-800">
+                    Ahmed Farouk
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-blue-600">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-blue-600">About</a>
+                    <a href="#portfolio" class="nav-link text-gray-700 hover:text-blue-600">Portfolio</a>
+                    <a href="#services" class="nav-link text-gray-700 hover:text-blue-600">Services</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600">Contact</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-700 p-1.5 rounded-lg hover:bg-gray-100 transition-colors" id="mobile-menu-btn">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="md:hidden mt-2 hidden" id="mobile-menu">
+                <div class="bg-white rounded-lg shadow-lg p-2 mx-2">
+                    <div class="flex flex-col space-y-1">
+                        <a href="#home" class="text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-all text-center font-medium text-sm">🏠 Home</a>
+                        <a href="#about" class="text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-all text-center font-medium text-sm">👨‍💼 About</a>
+                        <a href="#portfolio" class="text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-all text-center font-medium text-sm">🎨 Portfolio</a>
+                        <a href="#services" class="text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-all text-center font-medium text-sm">⚡ Services</a>
+                        <a href="#contact" class="text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-all text-center font-medium text-sm">📧 Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center gradient-bg relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-20 left-20 w-32 h-32 bg-white rounded-full"></div>
+            <div class="absolute top-40 right-32 w-24 h-24 bg-white rounded-full"></div>
+            <div class="absolute bottom-32 left-1/3 w-16 h-16 bg-white rounded-full"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 text-white text-center lg:text-left" data-aos="fade-right">
+                    <h1 class="text-3xl sm:text-4xl lg:text-7xl font-bold font-display mb-4 sm:mb-6 leading-tight">
+                        Creative
+                        <span class="text-purple-300">Designer</span>
+                    </h1>
+                    <p class="text-base sm:text-lg lg:text-2xl mb-6 sm:mb-8 text-gray-200 leading-relaxed">
+                        Passionate about design and innovation. I help individuals and businesses bring their vision to life through creative visual solutions.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                        <a href="#portfolio" class="bg-yellow-400 text-gray-900 px-5 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-yellow-300 transition-all transform hover:scale-105 inline-flex items-center justify-center shadow-lg text-sm sm:text-base">
+                            <i class="fas fa-eye mr-2"></i>
+                            View My Work
+                        </a>
+                        <a href="#contact" class="border-2 border-white text-white px-5 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition-all transform hover:scale-105 inline-flex items-center justify-center text-sm sm:text-base">
+                            <i class="fas fa-envelope mr-2"></i>
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 mt-8 lg:mt-0" data-aos="fade-left">
+                    <div class="relative">
+                        <div class="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 mx-auto">
+                            <img src="pics/my%20personal%20img/my%20personal%20img.jpg" alt="Ahmed Farouk" class="w-full h-full object-cover rounded-full shadow-2xl">
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-purple-500/20 to-pink-500/20"></div>
+                        </div>
+                        
+                        <!-- Floating Elements -->
+                        <div class="absolute top-8 -left-6 sm:top-10 sm:-left-10 glass-effect p-2 sm:p-4 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                            <i class="fas fa-palette text-purple-300 text-lg sm:text-2xl"></i>
+                        </div>
+                        <div class="absolute bottom-8 -right-6 sm:bottom-10 sm:-right-10 glass-effect p-2 sm:p-4 rounded-lg" data-aos="fade-up" data-aos-delay="400">
+                            <i class="fas fa-magic text-purple-300 text-lg sm:text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-8 sm:mb-16" data-aos="fade-up">
+                <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold font-display text-gray-800 mb-3 sm:mb-4">About Me</h2>
+                <p class="text-base sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
+                    Discover my journey, skills, and passion for creating exceptional visual experiences
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h3 class="text-xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">Hello, I'm Ahmed Farouk</h3>
+                    <p class="text-sm sm:text-lg text-gray-600 mb-4 sm:mb-6 leading-relaxed">
+                        A passionate graphic designer with a love for design and innovation. I use Adobe Photoshop, Illustrator, and other cutting-edge tools to help individuals and businesses bring their vision to life.
+                    </p>
+                    <p class="text-sm sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed">
+                        I believe in creating real connections with clients and supporting them throughout their journey, even after the work is completed. My approach combines creativity with strategic thinking to deliver impactful visual solutions.
+                    </p>
+                    
+                    <!-- Education & Experience -->
+                    <div class="space-y-4 sm:space-y-6">
+                        <div class="border-l-4 border-blue-500 pl-4 sm:pl-6">
+                            <h4 class="text-lg sm:text-xl font-semibold text-gray-800">Education</h4>
+                            <p class="text-sm sm:text-base text-gray-600">Information Systems Institute of Management Information Systems, Egypt</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-yellow-400 pl-4 sm:pl-6">
+                            <h4 class="text-lg sm:text-xl font-semibold text-gray-800">Experience</h4>
+                            <p class="text-sm sm:text-base text-gray-600">Trainee at National Telecommunication Institute (NTI) — Cairo, Egypt</p>
+                            <p class="text-xs sm:text-sm text-gray-500">May to July 2025</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="bg-gray-50 p-4 sm:p-8 rounded-2xl">
+                        <h4 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">Skills & Expertise</h4>
+                        
+                        <!-- Technical Skills -->
+                        <div class="space-y-4 sm:space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-semibold text-gray-700 text-sm sm:text-base">Adobe Photoshop</span>
+                                    <span class="text-gray-600 text-sm sm:text-base">95%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-semibold text-gray-700 text-sm sm:text-base">Adobe Illustrator</span>
+                                    <span class="text-gray-600 text-sm sm:text-base">90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-semibold text-gray-700 text-sm sm:text-base">Adobe InDesign</span>
+                                    <span class="text-gray-600 text-sm sm:text-base">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-semibold text-gray-700 text-sm sm:text-base">Figma</span>
+                                    <span class="text-gray-600 text-sm sm:text-base">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Languages -->
+                        <div class="mt-6 sm:mt-8">
+                            <h5 class="text-base sm:text-lg font-semibold text-gray-800 mb-3 sm:mb-4">Languages</h5>
+                            <div class="flex flex-wrap gap-2 sm:gap-3">
+                                <span class="bg-blue-100 text-blue-800 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm">Arabic (Native)</span>
+                                <span class="bg-green-100 text-green-800 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm">English (Intermediate)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section-padding bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-8 sm:mb-16" data-aos="fade-up">
+                <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold font-display text-gray-800 mb-3 sm:mb-4">My Portfolio</h2>
+                <p class="text-base sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
+                    A showcase of my recent work and creative projects
+                </p>
+            </div>
+            
+            <!-- Portfolio Filter -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-6 sm:mb-12" data-aos="fade-up">
+                <button class="portfolio-filter active bg-blue-600 text-white px-3 sm:px-6 py-2 sm:py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors text-xs sm:text-base" data-filter="all">
+                    All Projects
+                </button>
+                <button class="portfolio-filter bg-white text-gray-700 px-3 sm:px-6 py-2 sm:py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors text-xs sm:text-base" data-filter="branding">
+                    Branding
+                </button>
+                <button class="portfolio-filter bg-white text-gray-700 px-3 sm:px-6 py-2 sm:py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors text-xs sm:text-base" data-filter="social-media">
+                    Social Media
+                </button>
+                <button class="portfolio-filter bg-white text-gray-700 px-3 sm:px-6 py-2 sm:py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors text-xs sm:text-base" data-filter="tasks">
+                    Creative Tasks
+                </button>
+            </div>
+            
+            <!-- Portfolio Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                
+                <!-- Trika Branding Projects -->
+                <div class="portfolio-item branding" data-aos="fade-up">
+                    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                        <div class="relative h-48 sm:h-64">
+                            <img src="pics/my%20project%20img/Behance%20Project/Trika%20Project/Hoody-Mockup-Trika.png" alt="Trika Brand Identity" class="w-full h-full object-cover">
+                            <div class="project-overlay">
+                                <div class="text-center text-white">
+                                    <h4 class="text-lg sm:text-xl font-bold mb-2">Trika Sports Brand</h4>
+                                    <p class="mb-3 sm:mb-4 text-sm sm:text-base">Complete brand identity design</p>
+                                    <div class="flex gap-2 sm:gap-3 justify-center">
+                                        <a href="https://www.behance.net/gallery/230899005/-Logo-Design-for-Sports-Brand" target="_blank" class="bg-white text-gray-900 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold hover:bg-gray-100 transition-colors">
+                                            <i class="fas fa-external-link-alt mr-1"></i>
+                                            View Project
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 sm:p-6">
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-2">Trika | تريكا</h3>
+                            <p class="text-gray-600 mb-3 sm:mb-4 text-sm sm:text-base">Logo specially designed for an Arabic sports brand, combining football with modern geometric Arabic typography.</p>
+                            <div class="flex flex-wrap gap-1.5 sm:gap-2">
+                                <span class="bg-blue-100 text-blue-800 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs">Illustrator</span>
+                                <span class="bg-green-100 text-green-800 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs">Photoshop</span>
+                                <span class="bg-purple-100 text-purple-800 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs">Branding</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item branding" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                        <div class="relative h-64">
+                            <img src="pics/my%20project%20img/Behance%20Project/Trika%20Project/Store-Sign%20trika-logo%20mockup.png" alt="Trika Store Sign" class="w-full h-full object-cover">
+                            <div class="project-overlay">
+                                <div class="text-center text-white">
+                                    <h4 class="text-xl font-bold mb-2">Trika Store Sign</h4>
+                                    <p class="mb-4">Brand application mockup</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Trika Store Signage</h3>
+                            <p class="text-gray-600 mb-4">Professional store sign mockup showing brand application in real-world context.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs">Mockup</span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs">Branding</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item branding" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                        <div class="relative h-64">
+                            <img src="pics/my%20project%20img/Behance%20Project/Trika%20Project/white-t-shirt%20trika%20mockup.png" alt="Trika T-shirt Mockup" class="w-full h-full object-cover">
+                            <div class="project-overlay">
+                                <div class="text-center text-white">
+                                    <h4 class="text-xl font-bold mb-2">Trika T-shirt Design</h4>
+                                    <p class="mb-4">Brand merchandise mockup</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Trika T-shirt Mockup</h3>
+                            <p class="text-gray-600 mb-4">Professional t-shirt mockup showcasing the Trika brand logo application.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs">Mockup</span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs">Merchandise</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Social Media Projects -->
+                <div class="portfolio-item social-media" data-aos="fade-up">
+                    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                        <div class="relative h-64">
+                            <img src="pics/my%20project%20img/Social%20media/black_friday.png" alt="Black Friday Design" class="w-full h-full object-cover">
+                            <div class="project-overlay">
+                                <div class="text-center text-white">
+                                    <h4 class="text-xl font-bold mb-2">Black Friday Design</h4>
+                                    <p class="mb-4">Social media advertisement</p>
+                                    <div class="flex gap-3 justify-center">
+                                        <a href="https://www.behance.net/gallery/231644777/Social-Media-Ad-Designs-Mixed-Concepts" target="_blank" class="bg-white text-gray-900 px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition-colors">
+                                            <i class="fas fa-external-link-alt mr-1"></i>
+                                            View Project
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Black Friday Campaign</h3>
+                            <p class="text-gray-600 mb-4">Eye-catching Black Friday promotional design with bold typography and vibrant colors.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs">Photoshop</span>
+                                <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs">Social Media</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item social-media" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                        <div class="relative h-64">
+                            <img src="pics/my%20project%20img/Social%20media/Yogurt%20Adv.png" alt="Yogurt Advertisement" class="w-full h-full object-cover">
+                            <div class="project-overlay">
+                                <div class="text-center text-white">
+                                    <h4 class="text-xl font-bold mb-2">Yogurt Advertisement</h4>
+                                    <p class="mb-4">Product advertising design</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Yogurt Advertisement</h3>
+                            <p class="text-gray-600 mb-4">Creative product advertisement design with appealing visual elements and fresh colors.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs">Photoshop</span>
+                                <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-xs">Advertisement</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item social-media" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                        <div class="relative h-64">
+                            <img src="pics/my%20project%20img/Social%20media/Phone-adv.png" alt="Phone Advertisement" class="w-full h-full object-cover">
+                            <div class="project-overlay">
+                                <div class="text-center text-white">
+                                    <h4 class="text-xl font-bold mb-2">Mobile Advertisement</h4>
+                                    <p class="mb-4">Tech product promotion</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Mobile Phone Ad</h3>
+                            <p class="text-gray-600 mb-4">Modern mobile phone advertisement with sleek design and professional presentation.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs">Photoshop</span>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs">Tech</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item social-media" data-aos="fade-up">
+                    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                        <div class="relative h-64">
+                            <img src="pics/my%20project%20img/Social%20media/Juice.png" alt="Juice Advertisement" class="w-full h-full object-cover">
+                            <div class="project-overlay">
+                                <div class="text-center text-white">
+                                    <h4 class="text-xl font-bold mb-2">Juice Advertisement</h4>
+                                    <p class="mb-4">Beverage product design</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Fresh Juice Ad</h3>
+                            <p class="text-gray-600 mb-4">Refreshing juice advertisement with vibrant colors and appetizing presentation.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs">Photoshop</span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs">Beverage</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Creative Tasks -->
+                <div class="portfolio-item tasks" data-aos="fade-up">
+                    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                        <div class="relative h-64">
+                            <img src="pics/my%20project%20img/Tasks/Glowing-Girl.png" alt="Glowing Girl Effect" class="w-full h-full object-cover">
+                            <div class="project-overlay">
+                                <div class="text-center text-white">
+                                    <h4 class="text-xl font-bold mb-2">Glowing Girl Effect</h4>
+                                    <p class="mb-4">Creative visual effect</p>
+                                    <div class="flex gap-3 justify-center">
+                                        <a href="https://www.behance.net/gallery/231646355/Graphic-Design-Tasks-Visual-Effects-Styles" target="_blank" class="bg-white text-gray-900 px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition-colors">
+                                            <i class="fas fa-external-link-alt mr-1"></i>
+                                            View Project
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Glowing Girl Effect</h3>
+                            <p class="text-gray-600 mb-4">Stunning glowing effect showcasing advanced Photoshop lighting techniques.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs">Photoshop</span>
+                                <span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-xs">Visual Effects</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item tasks" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                        <div class="relative h-64">
+                            <img src="pics/my%20project%20img/Tasks/Diamond.png" alt="Diamond Effect" class="w-full h-full object-cover">
+                            <div class="project-overlay">
+                                <div class="text-center text-white">
+                                    <h4 class="text-xl font-bold mb-2">Diamond Effect</h4>
+                                    <p class="mb-4">Luxury visual effect</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Diamond Visual Effect</h3>
+                            <p class="text-gray-600 mb-4">Luxurious diamond effect with realistic reflections and premium aesthetics.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs">Photoshop</span>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs">Effects</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item tasks" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                        <div class="relative h-64">
+                            <img src="pics/my%20project%20img/Tasks/Manipulation.png" alt="Photo Manipulation" class="w-full h-full object-cover">
+                            <div class="project-overlay">
+                                <div class="text-center text-white">
+                                    <h4 class="text-xl font-bold mb-2">Photo Manipulation</h4>
+                                    <p class="mb-4">Creative photo editing</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Photo Manipulation</h3>
+                            <p class="text-gray-600 mb-4">Creative photo manipulation showcasing advanced compositing and editing skills.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs">Photoshop</span>
+                                <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-xs">Manipulation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item tasks" data-aos="fade-up">
+                    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                        <div class="relative h-64">
+                            <img src="pics/my%20project%20img/Tasks/pumpkin.png" alt="Pumpkin Design" class="w-full h-full object-cover">
+                            <div class="project-overlay">
+                                <div class="text-center text-white">
+                                    <h4 class="text-xl font-bold mb-2">Pumpkin Design</h4>
+                                    <p class="mb-4">Seasonal creative work</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Pumpkin Creative</h3>
+                            <p class="text-gray-600 mb-4">Seasonal pumpkin design with creative lighting and atmospheric effects.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs">Photoshop</span>
+                                <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-xs">Seasonal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item tasks" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                        <div class="relative h-64">
+                            <img src="pics/my%20project%20img/Tasks/QUEST.png" alt="Quest Design" class="w-full h-full object-cover">
+                            <div class="project-overlay">
+                                <div class="text-center text-white">
+                                    <h4 class="text-xl font-bold mb-2">Quest Design</h4>
+                                    <p class="mb-4">Gaming-inspired artwork</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Quest Gaming Design</h3>
+                            <p class="text-gray-600 mb-4">Gaming-inspired design with dynamic typography and engaging visual elements.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs">Photoshop</span>
+                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs">Gaming</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item tasks" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
+                        <div class="relative h-64">
+                            <img src="pics/my%20project%20img/Tasks/Shiny.png" alt="Shiny Effect" class="w-full h-full object-cover">
+                            <div class="project-overlay">
+                                <div class="text-center text-white">
+                                    <h4 class="text-xl font-bold mb-2">Shiny Effect</h4>
+                                    <p class="mb-4">Metallic visual effect</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Shiny Metallic Effect</h3>
+                            <p class="text-gray-600 mb-4">Polished metallic effect with realistic reflections and premium finish.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs">Photoshop</span>
+                                <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs">Metallic</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Behance Embed -->
+            <div class="mt-16 text-center" data-aos="fade-up">
+                <h3 class="text-2xl font-bold text-gray-800 mb-8">Featured Project: Trika Sports Brand</h3>
+                <div class="max-w-4xl mx-auto">
+                    <iframe src="https://www.behance.net/embed/project/230899005?ilo0=1" height="400" width="100%" allowfullscreen lazyload frameborder="0" allow="clipboard-write" referrerPolicy="strict-origin-when-cross-origin" class="rounded-lg shadow-lg"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-8 sm:mb-16" data-aos="fade-up">
+                <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold font-display text-gray-800 mb-3 sm:mb-4">My Services</h2>
+                <p class="text-base sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
+                    Professional design services tailored to bring your vision to life
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+                <div class="text-center p-4 sm:p-8 bg-gray-50 rounded-2xl hover-lift" data-aos="fade-up">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <i class="fas fa-palette text-blue-600 text-lg sm:text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4">Brand Identity</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">Complete brand identity design including logos, color palettes, and brand guidelines.</p>
+                </div>
+                
+                <div class="text-center p-4 sm:p-8 bg-gray-50 rounded-2xl hover-lift" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <i class="fas fa-share-alt text-green-600 text-lg sm:text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4">Social Media Design</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">Eye-catching social media posts, stories, and advertisement designs for all platforms.</p>
+                </div>
+                
+                <div class="text-center p-4 sm:p-8 bg-gray-50 rounded-2xl hover-lift" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <i class="fas fa-file-alt text-purple-600 text-lg sm:text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4">Posters & Flyers</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">Creative poster and flyer designs for events, promotions, and marketing campaigns.</p>
+                </div>
+                
+                <div class="text-center p-4 sm:p-8 bg-gray-50 rounded-2xl hover-lift" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <i class="fas fa-id-card text-yellow-600 text-lg sm:text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4">Business Cards & Ads</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">Professional business cards, banners, and advertisement designs that make an impact.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding bg-gray-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-8 sm:mb-16" data-aos="fade-up">
+                <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold font-display mb-3 sm:mb-4">Let's Work Together</h2>
+                <p class="text-base sm:text-xl text-gray-300 max-w-2xl mx-auto px-4">
+                    Ready to bring your vision to life? Get in touch and let's create something amazing together.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
+                <div data-aos="fade-right">
+                    <h3 class="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">Get In Touch</h3>
+                    
+                    <div class="space-y-4 sm:space-y-6">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-full flex items-center justify-center mr-3 sm:mr-4">
+                                <i class="fas fa-phone text-white text-sm sm:text-base"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-300 text-sm sm:text-base">Phone</p>
+                                <a href="tel:+201147079817" class="text-white hover:text-yellow-400 transition-colors text-sm sm:text-base">+20 114 707 9817</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-600 rounded-full flex items-center justify-center mr-3 sm:mr-4">
+                                <i class="fas fa-envelope text-white text-sm sm:text-base"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-300 text-sm sm:text-base">Email</p>
+                                <button onclick="copyEmail()" class="text-white hover:text-purple-300 transition-colors text-sm sm:text-base cursor-pointer bg-transparent border-none p-0 font-inherit">a.faroukcx@gmail.com</button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 rounded-full flex items-center justify-center mr-3 sm:mr-4">
+                                <i class="fab fa-linkedin text-white text-sm sm:text-base"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-300 text-sm sm:text-base">LinkedIn</p>
+                                <a href="https://www.linkedin.com/in/ahmed-faroukcx90" target="_blank" class="text-white hover:text-yellow-400 transition-colors text-sm sm:text-base">ahmed-faroukcx90</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-600 rounded-full flex items-center justify-center mr-3 sm:mr-4">
+                                <i class="fab fa-behance text-white text-sm sm:text-base"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-300 text-sm sm:text-base">Behance</p>
+                                <a href="https://behance.net/ahmedfarouk170" target="_blank" class="text-white hover:text-yellow-400 transition-colors text-sm sm:text-base">ahmedfarouk170</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <form class="space-y-4 sm:space-y-6" id="contact-form">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                            <input type="text" id="name" name="name" required class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white text-sm sm:text-base">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                            <input type="email" id="email" name="email" required class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white text-sm sm:text-base">
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" required class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white text-sm sm:text-base">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="4" required class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white resize-none text-sm sm:text-base"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-blue-700 transition-all transform hover:scale-105 shadow-lg active:scale-95 text-sm sm:text-base">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                
+                
+                <div class="flex justify-center space-x-6">
+                    <a href="https://www.linkedin.com/in/ahmed-faroukcx90" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="https://behance.net/ahmedfarouk170" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-behance text-xl"></i>
+                    </a>
+                    <button onclick="copyEmail()" class="text-gray-400 hover:text-white transition-colors bg-transparent border-none p-0 cursor-pointer">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </button>
+                </div>
+                <div class="mb-4">
+                    <p>&copy; 2025 Ahmed Farouk. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
