@@ -8,17 +8,25 @@
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
     
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    
+    <!-- Critical CSS - Load immediately -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Non-critical CSS - Load asynchronously -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"></noscript>
     
     <style>
         :root {
@@ -31,6 +39,16 @@
         
         body {
             font-family: 'Inter', sans-serif;
+            font-display: swap;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+        
+        html {
+            overflow-x: hidden;
+            max-width: 100vw;
         }
         
         .font-display {
@@ -361,9 +379,147 @@
                 margin-top: 0.75rem !important;
             }
         }
+        
+        /* Performance Optimizations */
+        * {
+            box-sizing: border-box;
+        }
+        
+        /* Fix horizontal overflow issues */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        
+        .container {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        /* Prevent elements from causing horizontal scroll */
+        section {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+        
+        /* Fix any potential overflow from floating elements */
+        .relative {
+            overflow: hidden;
+        }
+        
+        /* Ensure grid doesn't overflow */
+        .grid {
+            max-width: 100%;
+        }
+        
+        /* Fix potential issues with absolute positioned elements */
+        .absolute {
+            max-width: calc(100vw - 2rem);
+        }
+        
+        /* Ensure no element can cause horizontal scroll */
+        .container, .mx-auto {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        /* Fix for mobile devices */
+        @media (max-width: 768px) {
+            body {
+                overflow-x: hidden !important;
+                max-width: 100vw !important;
+            }
+            
+            .container {
+                max-width: 100vw !important;
+                overflow-x: hidden !important;
+            }
+            
+            /* Ensure all sections stay within viewport */
+            section {
+                max-width: 100vw !important;
+                overflow-x: hidden !important;
+            }
+            
+            /* Fix grid overflow on mobile */
+            .grid {
+                max-width: 100% !important;
+            }
+            
+            /* Prevent any element from extending beyond viewport */
+            * {
+                max-width: 100vw;
+            }
+        }
+        
+        img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+        
+        .hover-lift {
+            will-change: transform;
+            transform: translateZ(0);
+        }
+        
+        .project-overlay {
+            will-change: opacity;
+            transform: translateZ(0);
+        }
+        
+        /* Reduce repaints */
+        .gradient-bg {
+            will-change: transform;
+            transform: translateZ(0);
+        }
+        
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 30%, #4c1d95 70%, #1e1b4b 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #a855f7;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
+    
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-spinner"></div>
+        <p class="text-white text-lg font-semibold">Loading Portfolio...</p>
+        <p class="text-purple-300 text-sm mt-2">✨ Optimizing images for best experience</p>
+    </div>
     
     <!-- Navigation -->
     <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 shadow-sm">
@@ -435,17 +591,17 @@
                 </div>
                 
                 <div class="lg:w-1/2 mt-8 lg:mt-0" data-aos="fade-left">
-                    <div class="relative">
+                    <div class="relative overflow-hidden">
                         <div class="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 mx-auto">
-                            <img src="pics/my%20personal%20img/my%20personal%20img.jpg" alt="Ahmed Farouk" class="w-full h-full object-cover rounded-full shadow-2xl">
+                            <img src="pics/my%20personal%20img/my%20personal%20img.jpg" alt="Ahmed Farouk" class="w-full h-full object-cover rounded-full shadow-2xl" loading="lazy">
                             <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-purple-500/20 to-pink-500/20"></div>
                         </div>
                         
                         <!-- Floating Elements -->
-                        <div class="absolute top-8 -left-6 sm:top-10 sm:-left-10 glass-effect p-2 sm:p-4 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                        <div class="absolute top-8 left-2 sm:top-10 sm:left-0 glass-effect p-2 sm:p-4 rounded-lg" data-aos="fade-up" data-aos-delay="200">
                             <i class="fas fa-palette text-purple-300 text-lg sm:text-2xl"></i>
                         </div>
-                        <div class="absolute bottom-8 -right-6 sm:bottom-10 sm:-right-10 glass-effect p-2 sm:p-4 rounded-lg" data-aos="fade-up" data-aos-delay="400">
+                        <div class="absolute bottom-8 right-2 sm:bottom-10 sm:right-0 glass-effect p-2 sm:p-4 rounded-lg" data-aos="fade-up" data-aos-delay="400">
                             <i class="fas fa-magic text-purple-300 text-lg sm:text-2xl"></i>
                         </div>
                     </div>
@@ -583,7 +739,7 @@
                 <div class="portfolio-item branding" data-aos="fade-up">
                     <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
                         <div class="relative h-48 sm:h-64">
-                            <img src="pics/my%20project%20img/Behance%20Project/Trika%20Project/Hoody-Mockup-Trika.png" alt="Trika Brand Identity" class="w-full h-full object-cover">
+                            <img src="pics/my%20project%20img/Behance%20Project/Trika%20Project/Hoody-Mockup-Trika.png" alt="Trika Brand Identity" class="w-full h-full object-cover" loading="lazy">
                             <div class="project-overlay">
                                 <div class="text-center text-white">
                                     <h4 class="text-lg sm:text-xl font-bold mb-2">Trika Sports Brand</h4>

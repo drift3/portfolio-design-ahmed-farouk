@@ -253,9 +253,21 @@ scrollToTopBtn.addEventListener('click', () => {
     });
 });
 
+// Loading Screen Management
+function hideLoadingScreen() {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+        loadingScreen.classList.add('hidden');
+        setTimeout(() => {
+            loadingScreen.remove();
+        }, 500);
+    }
+}
+
 // Initialize all animations and effects
 document.addEventListener('DOMContentLoaded', () => {
     animateSkillBars();
+    optimizeImages();
     
     // Add fade-in animation CSS
     const style = document.createElement('style');
@@ -265,17 +277,107 @@ document.addEventListener('DOMContentLoaded', () => {
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .lazy {
+        .lazy-loading {
             filter: blur(5px);
-            transition: filter 0.3s;
+            transition: filter 0.3s ease;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
         }
         
-        .lazy.loaded {
+        .lazy-loaded {
             filter: blur(0);
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
     `;
     document.head.appendChild(style);
+    
+    // Hide loading screen after critical content loads
+    setTimeout(() => {
+        hideLoadingScreen();
+    }, 1000);
 });
+
+// Hide loading screen when page is fully loaded
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        hideLoadingScreen();
+    }, 500);
+});
+
+// Image Optimization Function
+function optimizeImages() {
+    // Add lazy loading to all images
+    const images = document.querySelectorAll('img:not([loading])');
+    images.forEach((img, index) => {
+        // Prioritize above-the-fold images
+        if (index < 3) {
+            img.setAttribute('loading', 'eager');
+            img.setAttribute('fetchpriority', 'high');
+        } else {
+            img.setAttribute('loading', 'lazy');
+            img.setAttribute('fetchpriority', 'low');
+        }
+        
+        img.classList.add('lazy-loading');
+        
+        // Add load event listener
+        img.addEventListener('load', () => {
+            img.classList.remove('lazy-loading');
+            img.classList.add('lazy-loaded');
+        });
+        
+        // Add error handling
+        img.addEventListener('error', () => {
+            img.classList.remove('lazy-loading');
+            img.style.background = 'linear-gradient(45deg, #f3f4f6, #e5e7eb)';
+            img.style.display = 'flex';
+            img.style.alignItems = 'center';
+            img.style.justifyContent = 'center';
+            img.innerHTML = '<span style="color: #9ca3af; font-size: 0.875rem;">📷 Image loading...</span>';
+        });
+        
+        // Add intersection observer for better lazy loading
+        if ('IntersectionObserver' in window && img.getAttribute('loading') === 'lazy') {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.src; // Trigger reload if needed
+                        observer.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: '50px 0px',
+                threshold: 0.01
+            });
+            
+            imageObserver.observe(img);
+        }
+    });
+    
+    // Preload critical images (hero image)
+    const heroImage = document.querySelector('img[alt="Ahmed Farouk"]');
+    if (heroImage) {
+        heroImage.setAttribute('loading', 'eager');
+        heroImage.setAttribute('fetchpriority', 'high');
+    }
+    
+    // Add image compression hints
+    images.forEach(img => {
+        // Add decoding hint for better performance
+        img.setAttribute('decoding', 'async');
+        
+        // Add responsive image attributes if not present
+        if (!img.hasAttribute('sizes')) {
+            img.setAttribute('sizes', '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw');
+        }
+    });
+}
 
 // Performance optimization: Debounce scroll events
 function debounce(func, wait) {
