@@ -1,0 +1,15 @@
+::ffff:127.0.0.1 - - [03/Nov/2025 18:53:09] "GET / HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [03/Nov/2025 18:53:10] "GET /script.js HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [03/Nov/2025 18:53:10] "GET /pics/my%20project%20img/Social%20media/black_friday.png HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [03/Nov/2025 18:53:10] "GET /pics/my%20project%20img/Behance%20Project/Trika%20Project/white-t-shirt%20trika%20mockup.jpg HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [03/Nov/2025 18:53:10] "GET /pics/my%20project%20img/Tasks/Diamond.png HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [03/Nov/2025 18:53:10] "GET /pics/my%20project%20img/Behance%20Project/Trika%20Project/Store-Sign%20trika-logo%20mockup.jpg HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [03/Nov/2025 18:53:11] "GET /pics/my%20project%20img/Tasks/Glowing-Girl.png HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [03/Nov/2025 18:53:11] "GET /pics/my%20project%20img/Social%20media/Juice.png HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [03/Nov/2025 18:53:11] "GET /pics/my%20project%20img/Tasks/QUEST.png HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [03/Nov/2025 18:53:11] "GET /pics/my%20project%20img/Social%20media/Phone-adv.png HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [03/Nov/2025 18:53:11] "GET /pics/my%20project%20img/Tasks/Shiny.png HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [03/Nov/2025 18:53:11] "GET /pics/my%20project%20img/Social%20media/Yogurt%20Adv.png HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [03/Nov/2025 18:53:11] "GET /pics/my%20project%20img/Tasks/pumpkin.png HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [03/Nov/2025 18:53:11] "GET /pics/my%20project%20img/Tasks/Manipulation.png HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [03/Nov/2025 18:53:12] "GET /pics/my%20personal%20img/my%20personal%20img.jpg HTTP/1.1" 200 -

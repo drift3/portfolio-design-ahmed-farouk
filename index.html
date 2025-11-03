@@ -56,7 +56,22 @@
         }
         
         .gradient-bg {
-            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 30%, #4c1d95 70%, #1e1b4b 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 25%, #312e81 50%, #5b21b6 75%, #1e1b4b 100%);
+            position: relative;
+        }
+        
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
         }
         
         .glass-effect {
@@ -510,6 +525,194 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        /* Hero Section Enhancements */
+        .hero-title {
+            font-weight: 800 !important;
+            letter-spacing: -0.02em !important;
+            filter: drop-shadow(0 2px 8px rgba(139, 92, 246, 0.4)) !important;
+            background: linear-gradient(135deg, #ffffff 0%, #d8d0ff 50%, #a8a3ff 100%) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+        }
+        
+        .hero-subtitle {
+            filter: drop-shadow(0 2px 4px rgba(217, 213, 247, 0.3)) !important;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+            color: #1f2937 !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.5px !important;
+            position: relative !important;
+            overflow: hidden !important;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+            box-shadow: 0 8px 20px rgba(251, 191, 36, 0.3) !important;
+            border: none !important;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+            z-index: 1;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05) !important;
+            box-shadow: 0 15px 35px rgba(251, 191, 36, 0.4) !important;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-secondary {
+            border: 2px solid rgba(255, 255, 255, 0.7) !important;
+            color: white !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.5px !important;
+            position: relative !important;
+            overflow: hidden !important;
+            background: transparent !important;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+        }
+        
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+            z-index: 0;
+        }
+        
+        .btn-secondary:hover {
+            border-color: rgba(255, 255, 255, 1) !important;
+            background: rgba(255, 255, 255, 0.12) !important;
+            transform: translateY(-3px) scale(1.05) !important;
+            box-shadow: 0 12px 30px rgba(255, 255, 255, 0.2) !important;
+        }
+        
+        .btn-secondary:hover::before {
+            left: 100%;
+        }
+        
+        /* Profile Image Enhancement */
+        .hero-profile-image {
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .hero-profile-image::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            background: linear-gradient(135deg, #fbbf24 0%, #ec4899 50%, #8b5cf6 100%);
+            border-radius: 9999px;
+            opacity: 0;
+            animation: glow-pulse 3s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        @keyframes glow-pulse {
+            0%, 100% { 
+                opacity: 0;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 0.6;
+                transform: scale(1.05);
+            }
+        }
+        
+        .hero-profile-image img {
+            position: relative;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3),
+                        0 0 40px rgba(251, 191, 36, 0.2),
+                        inset 0 0 30px rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(1px);
+        }
+        
+        .hero-profile-overlay {
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(236, 72, 153, 0.1) 50%, transparent 100%);
+        }
+        
+        /* Floating Elements Animation */
+        .float-element {
+            animation: float-bob 4s ease-in-out infinite;
+        }
+        
+        .float-element:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes float-bob {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% { 
+                transform: translateY(-15px) rotate(5deg);
+            }
+        }
+        
+        .float-element {
+            background: rgba(255, 255, 255, 0.12) !important;
+            border: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .float-element:hover {
+            background: rgba(255, 255, 255, 0.15) !important;
+            border-color: rgba(251, 191, 36, 0.5) !important;
+            box-shadow: 0 12px 40px rgba(251, 191, 36, 0.2);
+        }
+        
+        .float-element i {
+            color: #fbbf24;
+            filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.4));
+        }
+        
+        /* Background Decorative Elements */
+        .hero-decorator {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+            animation: pulse-slow 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-slow {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 0.08;
+            }
+            50% { 
+                transform: scale(1.1);
+                opacity: 0.12;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -561,29 +764,31 @@
 
     <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center gradient-bg relative overflow-hidden">
-        <!-- Background Pattern -->
+        <!-- Enhanced Background Pattern -->
         <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-20 left-20 w-32 h-32 bg-white rounded-full"></div>
-            <div class="absolute top-40 right-32 w-24 h-24 bg-white rounded-full"></div>
-            <div class="absolute bottom-32 left-1/3 w-16 h-16 bg-white rounded-full"></div>
+            <div class="hero-decorator absolute top-20 left-20 w-32 h-32 bg-white rounded-full"></div>
+            <div class="hero-decorator absolute top-40 right-32 w-24 h-24 bg-white rounded-full" style="animation-delay: 0.5s;"></div>
+            <div class="hero-decorator absolute bottom-32 left-1/3 w-16 h-16 bg-white rounded-full" style="animation-delay: 1s;"></div>
+            <div class="hero-decorator absolute top-1/2 right-20 w-40 h-40 bg-purple-400 rounded-full" style="animation-delay: 1.5s;"></div>
         </div>
         
         <div class="container mx-auto px-4 sm:px-6 relative z-10">
-            <div class="flex flex-col lg:flex-row items-center">
+            <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
                 <div class="lg:w-1/2 text-white text-center lg:text-left" data-aos="fade-right">
-                    <h1 class="text-3xl sm:text-4xl lg:text-7xl font-bold font-display mb-4 sm:mb-6 leading-tight">
+                    <h1 class="hero-title text-3xl sm:text-4xl lg:text-7xl font-bold font-display mb-4 sm:mb-6 leading-tight">
                         Creative
-                        <span class="text-purple-300">Designer</span>
+                        <br class="hidden sm:block" />
+                        Designer
                     </h1>
-                    <p class="text-base sm:text-lg lg:text-2xl mb-6 sm:mb-8 text-gray-200 leading-relaxed">
+                    <p class="hero-subtitle text-base sm:text-lg lg:text-xl mb-8 sm:mb-10 leading-relaxed">
                         Passionate about design and innovation. I help individuals and businesses bring their vision to life through creative visual solutions.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-                        <a href="#portfolio" class="bg-yellow-400 text-gray-900 px-5 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-yellow-300 transition-all transform hover:scale-105 inline-flex items-center justify-center shadow-lg text-sm sm:text-base">
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#portfolio" class="btn-primary px-6 sm:px-10 py-3 sm:py-4 rounded-full inline-flex items-center justify-center text-sm sm:text-base">
                             <i class="fas fa-eye mr-2"></i>
                             View My Work
                         </a>
-                        <a href="#contact" class="border-2 border-white text-white px-5 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition-all transform hover:scale-105 inline-flex items-center justify-center text-sm sm:text-base">
+                        <a href="#contact" class="btn-secondary px-6 sm:px-10 py-3 sm:py-4 rounded-full inline-flex items-center justify-center text-sm sm:text-base">
                             <i class="fas fa-envelope mr-2"></i>
                             Get In Touch
                         </a>
@@ -591,18 +796,18 @@
                 </div>
                 
                 <div class="lg:w-1/2 mt-8 lg:mt-0" data-aos="fade-left">
-                    <div class="relative overflow-hidden">
-                        <div class="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 mx-auto">
-                            <img src="pics/my%20personal%20img/my%20personal%20img.jpg" alt="Ahmed Farouk" class="w-full h-full object-cover rounded-full shadow-2xl" loading="lazy">
-                            <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-purple-500/20 to-pink-500/20"></div>
+                    <div class="relative overflow-visible">
+                        <div class="hero-profile-image w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 mx-auto relative">
+                            <img src="pics/my%20personal%20img/my%20personal%20img.jpg" alt="Ahmed Farouk" class="w-full h-full object-cover rounded-full" loading="lazy">
+                            <div class="hero-profile-overlay"></div>
                         </div>
                         
-                        <!-- Floating Elements -->
-                        <div class="absolute top-8 left-2 sm:top-10 sm:left-0 glass-effect p-2 sm:p-4 rounded-lg" data-aos="fade-up" data-aos-delay="200">
-                            <i class="fas fa-palette text-purple-300 text-lg sm:text-2xl"></i>
+                        <!-- Enhanced Floating Elements -->
+                        <div class="float-element absolute top-6 left-0 sm:top-10 sm:left-4 p-3 sm:p-4 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+                            <i class="fas fa-palette text-xl sm:text-2xl"></i>
                         </div>
-                        <div class="absolute bottom-8 right-2 sm:bottom-10 sm:right-0 glass-effect p-2 sm:p-4 rounded-lg" data-aos="fade-up" data-aos-delay="400">
-                            <i class="fas fa-magic text-purple-300 text-lg sm:text-2xl"></i>
+                        <div class="float-element absolute bottom-6 right-0 sm:bottom-10 sm:right-4 p-3 sm:p-4 rounded-2xl" data-aos="fade-up" data-aos-delay="400">
+                            <i class="fas fa-sparkles text-xl sm:text-2xl"></i>
                         </div>
                     </div>
                 </div>
